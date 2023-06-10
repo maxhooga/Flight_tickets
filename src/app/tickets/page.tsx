@@ -9,7 +9,6 @@ import { Context } from "../../components/Context";
 
 export default function Tickets() {
   const context = useContext(Context);
-  // console.log(context)
   return (
     <Layout>
       <Grid container spacing={2} sx={{ width: "100%" }}>

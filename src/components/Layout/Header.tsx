@@ -1,6 +1,4 @@
 import { Grid } from "@mui/joy";
-import { Typography } from "@mui/joy";
-
 
 const Header = () => {
   return (
