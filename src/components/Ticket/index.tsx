@@ -17,7 +17,7 @@ const Ticket = ({ from, to, departure, arrival, duration, price }:Props) => {
   const context = useContext(Context)
 
   return (
-    <Box sx={{ padding: "25px" }}>
+    <Box>
       <Paper elevation={3}>
         <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ padding: "25px" }}>
           <Stack>
