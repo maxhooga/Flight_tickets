@@ -5,7 +5,7 @@
     "to": "London",
     "departure": "2023-06-10T10:00:00",
     "arrival": "2023-06-10T12:00:00",
-    "duration": "2h",
+    "duration": "3h",
     "price": 150,
     "seats": [
       { "id": 1, "number": "A1", "available": true },

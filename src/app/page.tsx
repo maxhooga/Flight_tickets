@@ -1,15 +1,32 @@
 'use client'
 
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Calendar from "@/components/Calendar";
 import { Grid, Stack, Input } from "@mui/joy";
 import { Context } from "../components/Context";
 import Layout from "@/components/Layout";
-import { Box, Paper } from "@mui/material";
+import { Box, Button, Paper } from "@mui/material";
 import Ticket from "@/components/Ticket";
 
-export default function Home() {
+
+const filterTikets = (context, ticket) => {
+  let result = context
+  for(const key in ticket){
+    if(ticket[key] !== ""){
+      result = result.filter((flight) => flight[key] == ticket[key])
+    }
+  }
+  return result
+}
+
+const Home = () => {
   const context = useContext(Context);
+  const [fromState, setFromState] = useState("");
+  const [toState, setToState] = useState("");
+  const [priceState, setPriceState] = useState("");
+  const [durationState, setDurationState] = useState("");
+  
+
   return (
     <Layout>
       <Grid container spacing={2}>
@@ -18,33 +35,55 @@ export default function Home() {
             <Paper elevation={1} sx={{padding: "25px", backgroundColor: "lightblue"}}>
               <Stack spacing={2}>
                 <Stack flexDirection="row">
-                  <Input placeholder="from"/>
-                  <Input placeholder="to"/>
+                  <Input
+                    placeholder="from"
+                    onChange={(e) => {setFromState(e.target.value)}}
+                  />
+                  <Input placeholder="to"
+                    onChange={(e) => {setToState(e.target.value)}}
+                  />
                 </Stack>
                 <Calendar />
-                <Input placeholder="price"/>
-                <Input placeholder="duration"/>
-                <Input placeholder="seats"/>
+                <Input 
+                  placeholder="price"
+                  onChange={(e) => {setPriceState(e.target.value)}}
+                />
+                <Input
+                  placeholder="duration"
+                  onChange={(e) => {setDurationState(e.target.value + "h")}}
+                />
               </Stack>
             </Paper>
           </Box>
         </Grid>
 
         <Grid xs={9}>
-          {context.map((ticket, index) => {
-            return (
-              <Ticket
-                from={ticket.from}
-                to={ticket.to}
-                departure={ticket.departure}
-                arrival={ticket.arrival}
-                duration={ticket.duration}
-                price={ticket.price}
-              />
-            )
-          })}
+          {
+            filterTikets(context, {
+              from: fromState,
+              to: toState,
+              price: priceState,
+              duration: durationState
+            }).map((ticket) => {
+              return (
+                <Ticket
+                  key={ticket.id}
+                  from={ticket.from}
+                  to={ticket.to}
+                  departure={ticket.departure}
+                  arrival={ticket.arrival}
+                  duration={ticket.duration}
+                  price={ticket.price}
+                />
+              )
+            })
+          }
+         
         </Grid>
       </Grid>
+      
     </Layout>
   )
 }
+
+export default Home;
