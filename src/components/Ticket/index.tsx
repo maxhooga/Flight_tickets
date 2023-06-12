@@ -15,7 +15,8 @@ type Props = {
 
 const Ticket = ({ from, to, departure, arrival, duration, price, id }:Props) => {
   const router = useRouter();
-  console.log(id)
+  
+
   return (
     <Box>
       <Paper elevation={3}>

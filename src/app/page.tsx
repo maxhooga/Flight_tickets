@@ -25,7 +25,6 @@ const Home = () => {
   const [toState, setToState] = useState("");
   const [priceState, setPriceState] = useState("");
   const [durationState, setDurationState] = useState("");
-  console.log(context[0])
 
   return (
     <Layout>
@@ -64,22 +63,23 @@ const Home = () => {
               to: toState,
               price: priceState,
               duration: durationState
-            }).map((ticket, index) => {
+            }).map((ticket: {
+              from: string,
+              to: string,
+              departure: string,
+              arrival: string,
+              duration: string,
+              price: number,
+              id: number
+            }, index: number) => {
               return (
-                  <Ticket
-                    key={index}
-                    from={ticket.from}
-                    to={ticket.to}
-                    departure={ticket.departure}
-                    arrival={ticket.arrival}
-                    duration={ticket.duration}
-                    price={ticket.price}
-                    id={ticket.id}
-                  />
+                <Ticket
+                  key={index}
+                  {...ticket}
+                />
               )
             })
           }
-         
         </Grid>
       </Grid>
       
