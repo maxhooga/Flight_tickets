@@ -4,6 +4,7 @@ import { Context } from "@/components/Context";
 import { useContext } from "react";
 import { Grid } from "@mui/joy";
 import Layout from "@/components/Layout";
+import { Stack, Typography } from "@mui/material";
 
 type Props = {
   params: {
@@ -22,7 +23,12 @@ const page = ({ params }:Props) => {
           people information
         </Grid>
         <Grid xs={6}>
-          information about flight
+          <Stack>
+            <Typography>{from} {"->"} {to}</Typography>
+            <Typography>{departure} {"->"} {arrival}</Typography>
+            <Typography>{duration}</Typography>
+            <Typography>{price}Kc</Typography>
+          </Stack>
         </Grid>
       </Grid>
     </Layout>
