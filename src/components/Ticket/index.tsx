@@ -1,3 +1,4 @@
+
 import { Box, Button, Paper, Stack, Typography } from "@mui/material"
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { useRouter } from 'next/navigation';
@@ -9,10 +10,12 @@ type Props = {
   arrival: string,
   duration: string,
   price: number,
+  id: number
 }
 
-const Ticket = ({ from, to, departure, arrival, duration, price }:Props) => {
+const Ticket = ({ from, to, departure, arrival, duration, price, id }:Props) => {
   const router = useRouter();
+  
 
   return (
     <Box>
@@ -31,7 +34,7 @@ const Ticket = ({ from, to, departure, arrival, duration, price }:Props) => {
             <Typography>{arrival}</Typography>
           </Stack>
 
-          <Button onClick={() => router.push("./booking")}>
+          <Button onClick={() => router.push(`tickets/${id}`)}>
             <Stack>
               <Typography>Reservovat</Typography>
               <Typography>za</Typography>

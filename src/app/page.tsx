@@ -5,7 +5,7 @@ import Calendar from "@/components/Calendar";
 import { Grid, Stack, Input } from "@mui/joy";
 import { Context } from "../components/Context";
 import Layout from "@/components/Layout";
-import { Box, Button, Paper } from "@mui/material";
+import { Box, Paper } from "@mui/material";
 import Ticket from "@/components/Ticket";
 
 
@@ -25,7 +25,6 @@ const Home = () => {
   const [toState, setToState] = useState("");
   const [priceState, setPriceState] = useState("");
   const [durationState, setDurationState] = useState("");
-  
 
   return (
     <Layout>
@@ -64,21 +63,23 @@ const Home = () => {
               to: toState,
               price: priceState,
               duration: durationState
-            }).map((ticket) => {
+            }).map((ticket: {
+              from: string,
+              to: string,
+              departure: string,
+              arrival: string,
+              duration: string,
+              price: number,
+              id: number
+            }, index: number) => {
               return (
                 <Ticket
-                  key={ticket.id}
-                  from={ticket.from}
-                  to={ticket.to}
-                  departure={ticket.departure}
-                  arrival={ticket.arrival}
-                  duration={ticket.duration}
-                  price={ticket.price}
+                  key={index}
+                  {...ticket}
                 />
               )
             })
           }
-         
         </Grid>
       </Grid>
       
